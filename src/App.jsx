@@ -26,8 +26,12 @@ function App() {
     e.preventDefault()
     console.log(formData);
 
+    //validazione form
+
+
     fetch('https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts', {
       method: 'POST',
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(formData)
     })
     .then(res => res.json())
@@ -102,7 +106,7 @@ function App() {
                 id="public"
                 value={formData.public}
                 onChange={handleFormData}
-                required
+              
               />
               <label className="form-check-label" htmlFor="public">Publish as public post</label>
             </div>
