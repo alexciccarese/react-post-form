@@ -25,7 +25,20 @@ function App() {
   function handleFormSubmit(e) {
     e.preventDefault()
     console.log(formData);
-    
+
+    fetch('https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts', {
+      method: 'POST',
+      body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      
+    })
+    .catch(err => {
+      console.log(err);
+      
+    })
 
   }
 
