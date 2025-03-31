@@ -48,6 +48,7 @@ function App() {
                 placeholder="Bob Smith"
                 value={formData.author}
                 onChange={handleFormData}
+                required
               />
             </div>
 
@@ -62,6 +63,7 @@ function App() {
                 placeholder="Star Wars"
                 value={formData.title}
                 onChange={handleFormData}
+                required
               />
             </div>
 
@@ -75,6 +77,7 @@ function App() {
                 placeholder="Add description here..."
                 value={formData.body}
                 onChange={handleFormData}
+                required
               ></textarea>
             </div>
 
@@ -86,6 +89,7 @@ function App() {
                 id="public"
                 value={formData.public}
                 onChange={handleFormData}
+                required
               />
               <label className="form-check-label" htmlFor="public">Publish as public post</label>
             </div>
