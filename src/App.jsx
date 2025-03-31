@@ -3,13 +3,39 @@ import { useState } from "react"
 
 function App() {
 
+  const [formData, setFormData] = useState({
+    author: '',
+    title: '',
+    body: '',
+    public: '',
+  })
+
+  function handleFormData(e) {
+    console.dir(e.target);
+    const type = e.target.type
+    const value = type === 'checkbox' ? e.target.checked : e.target.value
+    const key = e.target.name
+    console.log(type, key, value);
+    console.dir(e.target)
+
+    setFormData({...formData, [key]: value})
+  
+  }
+
+  function handleFormSubmit(e) {
+    e.preventDefault()
+    console.log(formData);
+    
+
+  }
+
   return (
     <>
       <div className="container mt-5">
         <h1 className='mb-4'>Create a new post</h1>
 
         <div className="card p-4" data-bs-theme="dark">
-          <form>
+          <form method="POST" onSubmit={handleFormSubmit}>
 
             <div className="mb-3">
               <label htmlFor="author" className="form-label">Author</label>
@@ -20,6 +46,8 @@ function App() {
                 id="author"
                 aria-describedby="authorHelper"
                 placeholder="Bob Smith"
+                value={formData.author}
+                onChange={handleFormData}
               />
             </div>
 
@@ -32,6 +60,8 @@ function App() {
                 id="title"
                 aria-describedby="titleHelper"
                 placeholder="Star Wars"
+                value={formData.title}
+                onChange={handleFormData}
               />
             </div>
 
@@ -43,29 +73,21 @@ function App() {
                 name="body"
                 rows="3"
                 placeholder="Add description here..."
+                value={formData.body}
+                onChange={handleFormData}
               ></textarea>
             </div>
 
-            <div className="form-check">
+            <div className="form-check my-3">
               <input
-                type="radio"
+                type="checkbox"
                 className="form-check-input"
-                name="privacy"
+                name="public"
                 id="public"
-                value="public"
+                value={formData.public}
+                onChange={handleFormData}
               />
-              <label className="form-check-label" htmlFor="public">Public</label>
-            </div>
-
-            <div className="form-check mb-3">
-              <input
-                type="radio"
-                className="form-check-input"
-                name="privacy"
-                id="private"
-                value="private"
-              />
-              <label className="form-check-label" htmlFor="private">Private</label>
+              <label className="form-check-label" htmlFor="public">Publish as public post</label>
             </div>
 
             <button type="submit" className="btn btn-primary">Submit</button>
